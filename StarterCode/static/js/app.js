@@ -46,25 +46,25 @@ function buildMetadata(sample) {
     // Use d3 to pull in the data
     d3.json(url).then((data) => {
 
-        // Retrieve all metadata
+        // Metadata
         let metadata = data.metadata;
 
         // Filter based on the value of the sample
         let value = metadata.filter(result => result.id == sample);
 
-        // Log the array of metadata objects after the have been filtered
+        // Create a reference point to an array that takes in the id key equal to the sample parameter
         console.log(value)
 
-        // Get the first index from the array
+        // Create a new reference point indexing the 0 position of the previous reference point
         let valueData = value[0];
 
-        // Clear out metadata
+        // Use `.html("") to clear any existing metadata
         d3.select("#sample-metadata").html("");
 
         // Use Object.entries to add each key/value pair to the panel
         Object.entries(valueData).forEach(([key,value]) => {
 
-            // Log the individual key/value pairs as they are being appended to the metadata panel
+            // Appended to the metadata panel
             console.log(key,value);
 
             d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
